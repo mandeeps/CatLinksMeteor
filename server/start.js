@@ -8,6 +8,7 @@ Meteor.startup(function () {
       url:"http://imgur.com/gallery/SpCbHBI",
       description:"He looks unhappy with you",
       createdOn:new Date(),
+      submittedBy:"Manu",
       upvotes:0,
       downvotes:0,
       rank:0
@@ -17,6 +18,7 @@ Meteor.startup(function () {
       url:"http://imgur.com/gallery/4clqUdj",
       description:"Totes adorbs",
       createdOn:new Date(),
+      submittedBy:"Manu",
       upvotes:0,
       downvotes:0,
       rank:0
@@ -26,6 +28,7 @@ Meteor.startup(function () {
       url:"http://www.buzzfeed.com/chelseamarshall/meows#.xaGko8Q2B3",
       description:"Astounding facts about cats",
       createdOn:new Date(),
+      submittedBy:"Manu",
       upvotes:0,
       downvotes:0,
       rank:0
@@ -35,6 +38,7 @@ Meteor.startup(function () {
       url:"https://en.wikipedia.org/wiki/Cat",
       description:"Lots of cat info",
       createdOn:new Date(),
+      submittedBy:"Manu",
       upvotes:0,
       downvotes:0,
       rank:0

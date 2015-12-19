@@ -3,40 +3,56 @@
 </head>
 
 <body>
-	<!-- navbar  - you will be putting the login functions here -->
-	<nav class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">
-	        Cat Links - A Social Link Sharing Site for Crazy Cat Ladies
-	      </a>
-	    </div>
-	  </div>
-    {{> loginButtons}}
-	</nav>
 
+</body>
+
+<template name="layout">
+  {{> yield "navbar"}}
+  {{> yield "main"}}
+</template>
+
+<template name="home">
 	<div class="container">
 		{{> website_form}}
+    <p></p>
 		{{> website_list}}
 	</div>
-</body>
+</template>
+
+<template name="navbar">
+  <!-- navbar  - you will be putting the login functions here -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">
+          Cat Links - A Social Link Sharing Site for Crazy Cat Ladies
+        </a>
+      </div>
+    </div>
+    {{> loginButtons}}
+  </nav>
+</template>
 
 
 <template name="website_form">
 	<a class="btn btn-default js-toggle-website-form" href="#">
   		<span class="glyphicon glyphicon-plus" aria-hidden="true"> </span> Submit Cat Link
 	</a>
+
 	<div id="website_form" class="hidden_div">
 		<form class="js-save-website-form">
-		  <div class="form-group">
+
+      <div class="form-group">
 		    <label for="url">Link address</label>
 		    <input type="text" class="form-control" id="url" placeholder="http://">
 		  </div>
-		  <div class="form-group">
+
+      <div class="form-group">
 		    <label for="title">Title</label>
 		    <input type="text" class="form-control" id="title" placeholder="A Cat Link">
 		  </div>
-		    <div class="form-group">
+
+      <div class="form-group">
 		    <label for="description">Description</label>
 		    <input type="text" class="form-control" id="description" placeholder="This cat link is good because...">
 		  </div>
@@ -50,8 +66,9 @@
 <template name="website_list">
 	<ol>
 	{{#each websites}}
-	{{>website_item}}
-  <br>
+	 {{> website_item}}
+   <a href="/site/{{_id}}/{{title}}">Comments</a>
+   <p></p>
 	{{/each}}
 	</ol>
 </template>
@@ -63,6 +80,7 @@
 	<p>
 		{{description}}
 	</p>
+  Submitted by {{submittedBy}}
   <p>Posted: {{createdOn}}</p>
   Rank: {{rank}}
 	<a href="#" class="btn btn-default js-upvote">
@@ -73,6 +91,41 @@
 		<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
     {{downvotes}}
 	</a>
-	<!-- you will be putting your up and down vote buttons in here! -->
 </li>
+</template>
+
+<template name="site">
+  {{> website_item}}
+
+  <div>
+    <p></p>
+  	<a class="btn btn-default js-toggle-comment-form" href="#">
+    		<span class="glyphicon glyphicon-plus" aria-hidden="true"> </span> Add Comment
+  	</a>
+
+  	<div id="comment_form" class="hidden_div">
+  		<form class="js-save-comment-form">
+
+        <div class="form-group">
+  		    <textarea class="form-control" id="comment" placeholder="Be nice..."></textarea>
+  		  </div>
+
+  		  <button type="submit" class="btn btn-default">Submit</button>
+  		</form>
+  	</div>
+
+    <p></p>
+
+    <div class="container bootstrap snippet">
+      {{#each comments}}
+        <!-- <div style="border: 1px solid black"> -->
+        {{author}} posted: {{text}}
+        <p>at {{posted}}</p>
+        <!-- </div> -->
+        <p></p>
+      {{/each}}
+    </div>
+
+  </div>
+
 </template>
