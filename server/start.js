@@ -43,5 +43,15 @@ Meteor.startup(function () {
       downvotes:0,
       rank:0
     });
+    Websites.insert({
+      title:"Best Photo EVAR!!!!",
+      url:"http://imgur.com/JYJfFJr",
+      description:"Awesome because NOT A CAT!",
+      createdOn:new Date(),
+      submittedBy:"Manu",
+      upvotes:0,
+      downvotes:0,
+      rank:0
+    });
   }
 });

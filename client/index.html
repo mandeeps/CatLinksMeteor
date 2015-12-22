@@ -3,7 +3,6 @@
 </head>
 
 <body>
-
 </body>
 
 <template name="layout">
@@ -13,26 +12,29 @@
 
 <template name="home">
 	<div class="container">
-		{{> website_form}}
-    <p></p>
-		{{> website_list}}
+    <div class="row">
+      <div class="col-xs-12">
+  		{{> website_form}}
+      <p></p>
+  		{{> website_list}}
+    </div>
+    </div>
 	</div>
 </template>
 
 <template name="navbar">
-  <!-- navbar  - you will be putting the login functions here -->
   <nav class="navbar navbar-default">
-    <div class="container-fluid">
+    <div class="container">
+      <a href="/"><img class="pull-left" id="mascot" height="50px" src="drusila-header.jpg" alt="Deadly Evil Murder Kitten!!!"/></a>
       <div class="navbar-header">
         <a class="navbar-brand" href="/">
-          Cat Links - A Social Link Sharing Site for Crazy Cat Ladies
+          Cat Links - For The Crazy Cat Lady In All Of Us
         </a>
       </div>
+      {{> loginButtons}}
     </div>
-    {{> loginButtons}}
   </nav>
 </template>
-
 
 <template name="website_form">
 	<a class="btn btn-default js-toggle-website-form" href="#">
@@ -65,18 +67,18 @@
 <!-- template that displays several website items -->
 <template name="website_list">
 	<ol>
-	{{#each websites}}
-	 {{> website_item}}
-   <a href="/site/{{_id}}/{{title}}">Comments</a>
-   <p></p>
-	{{/each}}
+    {{#each websites}}
+    {{> website_item}}
+    <a href="/site/{{_id}}/{{title}}">Comments</a>
+    <p></p>
+    {{/each}}
 	</ol>
 </template>
 
 <!-- template that displays individual website entries -->
 <template name="website_item">
 <li>
-	<a href="{{url}}">{{title}}</a>
+	<a href="{{url}}" class="js-link">{{title}}</a>
 	<p>
 		{{description}}
 	</p>
@@ -95,9 +97,9 @@
 </template>
 
 <template name="site">
+  <div class="container">
   {{> website_item}}
 
-  <div>
     <p></p>
   	<a class="btn btn-default js-toggle-comment-form" href="#">
     		<span class="glyphicon glyphicon-plus" aria-hidden="true"> </span> Add Comment
@@ -116,16 +118,13 @@
 
     <p></p>
 
-    <div class="container bootstrap snippet">
+    <div class="bootstrap snippet">
       {{#each comments}}
-        <!-- <div style="border: 1px solid black"> -->
         {{author}} posted: {{text}}
         <p>at {{posted}}</p>
-        <!-- </div> -->
         <p></p>
       {{/each}}
     </div>
 
   </div>
-
 </template>

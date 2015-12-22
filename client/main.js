@@ -36,33 +36,25 @@ Template.website_list.helpers({
 
 Template.website_item.events({
 	'click .js-upvote':function(event){
-		// example of how you can access the id for the website in the database
-		// (this is the data context for the template)
 		var website_id = this._id;
 
-		// put the code in here to add a vote to a website!
 		if (Meteor.user()) {
 			//console.log("Up voting website with id "+website_id);
 			Websites.update({_id:website_id},{$inc: {upvotes:1}});
 			Websites.update({_id:website_id},{$inc: {rank:1}});
-		}
+		} else {alert ('Log in to submit, comment and vote');}
 		return false;// prevent the button from reloading the page
 	},
 	'click .js-downvote':function(event){
-
-		// example of how you can access the id for the website in the database
-		// (this is the data context for the template)
 		var website_id = this._id;
 
-
-		// put the code in here to remove a vote from a website!
 		if (Meteor.user()) {
 			//console.log("Down voting website with id "+website_id);
 			Websites.update({_id:website_id},{$inc:{downvotes:1}})
 			Websites.update({_id:website_id},{$inc: {rank:-1}})
-		}
+		} else {alert ('Log in to submit, comment and vote');}
 		return false;// prevent the button from reloading the page
-	}
+	},
 })
 
 Template.website_form.events({
@@ -70,14 +62,22 @@ Template.website_form.events({
 		$('#website_form').toggle('slow');
 	},
 	'submit .js-save-website-form':function(event){
-		var title = event.target.title.value;
-		var url = event.target.url.value;
-		var description = event.target.description.value;
+		var title = $('#title').val();
+		var url = $('#url').val(); //event.target.url.value;
+		var description = $('#description').val();
+
+		 if (!title || !url) {
+		 	alert('fill in the form');
+			return false;
+		 }
+
+
 
 		// validate url is absolute link
-		if (url.substr(0, 6) != 'http://' || url.substr(0, 7) != 'https://') {
+		if (!url.startsWith('http://') && !url.startsWith('https://')) {
+		 	console.log(url);
+			url = "//" + url;
 			console.log(url);
-			url = 'http://' + url;
 		}
 
 		if (Meteor.user()) {
@@ -91,7 +91,9 @@ Template.website_form.events({
 				rank:0,
 				submittedBy:Meteor.user().username
 			});
-		}
+			$('#website_form').toggle('fast');
+		} else {alert ('Log in to submit, comment and vote');}
+
 		return false;// stop the form submit from reloading the page
 
 	}
@@ -105,6 +107,7 @@ Template.site.events({
 		var website_id = this._id;
 		var comment = event.target.comment.value;
 
+		if (!comment) {return false;}
 		if (Meteor.user()) {
 			Websites.update({_id:website_id},
 				{$push:{comments:{
@@ -112,8 +115,9 @@ Template.site.events({
 					author:Meteor.user().username,
 					text:comment
 				}}}
-			)
-		}
+			);
+			$('#comment_form').toggle('fast');
+		} else {alert ('Log in to submit, comment and vote');}
 
 		return false;
 	}
