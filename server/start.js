@@ -11,7 +11,9 @@ Meteor.startup(function () {
       submittedBy:"Manu",
       upvotes:0,
       downvotes:0,
-      rank:0
+      rank:0,
+      users_upvoted:[],
+      users_downvoted:[]
     });
      Websites.insert({
       title:"Insanely Cute Cat!",
@@ -21,7 +23,9 @@ Meteor.startup(function () {
       submittedBy:"Manu",
       upvotes:0,
       downvotes:0,
-      rank:0
+      rank:0,
+      users_upvoted:[],
+      users_downvoted:[]
     });
      Websites.insert({
       title:"82 Cat Facts",
@@ -31,7 +35,9 @@ Meteor.startup(function () {
       submittedBy:"Manu",
       upvotes:0,
       downvotes:0,
-      rank:0
+      rank:0,
+      users_upvoted:[],
+      users_downvoted:[]
     });
     Websites.insert({
       title:"Wikipedia Entry for Cat",
@@ -41,7 +47,9 @@ Meteor.startup(function () {
       submittedBy:"Manu",
       upvotes:0,
       downvotes:0,
-      rank:0
+      rank:0,
+      users_upvoted:[],
+      users_downvoted:[]
     });
     Websites.insert({
       title:"Best Photo EVAR!!!!",
@@ -51,7 +59,9 @@ Meteor.startup(function () {
       submittedBy:"Manu",
       upvotes:0,
       downvotes:0,
-      rank:0
+      rank:0,
+      users_upvoted:[],
+      users_downvoted:[]
     });
   }
 });
