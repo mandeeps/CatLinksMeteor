@@ -69,13 +69,19 @@
 
 <!-- template that displays several website items -->
 <template name="website_list">
-	<ol>
-    {{#each websites}}
-    {{> website_item}}
-    <a href="/site/{{_id}}/{{title}}">Comments</a>
-    <p></p>
-    {{/each}}
-	</ol>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+      	<ol>
+        {{#each websites}}
+          {{> website_item}}
+          <a href="/site/{{_id}}/{{title}}">Comments</a>
+          <p></p>
+        {{/each}}
+      	</ol>
+      </div>
+    </div>
+  </div>
 </template>
 
 <!-- template that displays individual website entries -->
@@ -101,33 +107,37 @@
 
 <template name="site">
   <div class="container">
-  {{> website_item}}
+    <div class="row">
+      <div class="col-xs-12">
+        {{> website_item}}
 
-    <p></p>
-  	<a class="btn btn-default js-toggle-comment-form" href="#">
-    		<span class="glyphicon glyphicon-plus" aria-hidden="true"> </span> Add Comment
-  	</a>
+          <p></p>
+        	<a class="btn btn-default js-toggle-comment-form" href="#">
+          		<span class="glyphicon glyphicon-plus" aria-hidden="true"> </span> Add Comment
+        	</a>
 
-  	<div id="comment_form" class="hidden_div">
-  		<form class="js-save-comment-form">
+        	<div id="comment_form" class="hidden_div">
+        		<form class="js-save-comment-form">
 
-        <div class="form-group">
-  		    <textarea class="form-control" id="comment" placeholder="Be nice..."></textarea>
-  		  </div>
+              <div class="form-group">
+        		    <textarea class="form-control" id="comment" placeholder="Be nice..."></textarea>
+        		  </div>
 
-  		  <button type="submit" class="btn btn-default">Submit</button>
-  		</form>
-  	</div>
+        		  <button type="submit" class="btn btn-default">Submit</button>
+        		</form>
+        	</div>
 
-    <p></p>
+          <p></p>
 
-    <div class="bootstrap snippet">
-      {{#each comments}}
-        {{author}} posted: {{text}}
-        <p>at {{posted}}</p>
-        <p></p>
-      {{/each}}
+          <div class="bootstrap snippet">
+            {{#each comments}}
+              {{author}} posted: {{text}}
+              <p>at {{posted}}</p>
+              <p></p>
+            {{/each}}
+          </div>
+
+        </div>
+      </div>
     </div>
-
-  </div>
 </template>
